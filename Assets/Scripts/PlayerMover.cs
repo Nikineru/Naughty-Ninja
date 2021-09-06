@@ -1,21 +1,50 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMover : MonoBehaviour
 {
-    [SerializeField] private float Speed =  1;
-    private Rigidbody2D rigidbody;
+    [SerializeField] private float Speed;
+    [SerializeField] private float JumpForse;
+    [SerializeField] private LayerMask GroundLayer;
+    [SerializeField] private Transform JumpCollider;
+    [SerializeField] private float JumpCheckRadius;
 
+    private Input _Input;
+    private Rigidbody2D _Rigidbody;
+
+    private void Awake()
+    {
+        _Rigidbody = GetComponent<Rigidbody2D>();
+
+        _Input = new Input();
+        _Input.Player.Jump.performed += context => Jump();
+    }
     private void OnEnable()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        _Input.Enable();
+    }
+    private void OnDisable()
+    {
+        _Input.Disable();
     }
 
     private void FixedUpdate()
     {
-        float VelocityX = Input.GetAxis("Horizontal");
+        _Rigidbody.velocity = new Vector2(Speed, _Rigidbody.velocity.y);
+    }
 
-        if(Mathf.Abs(VelocityX) > 0)
-            rigidbody.velocity = new Vector2(VelocityX * Speed, rigidbody.velocity.y);
+    private void Jump()
+    {
+        Collider2D hit = Physics2D.OverlapCircle(JumpCollider.position, JumpCheckRadius, GroundLayer);
+
+
+        if (hit != null && hit.transform != null)
+        {
+            _Rigidbody.AddForce(Vector2.up * JumpForse);
+            print("Jump");
+        }
     }
 }
