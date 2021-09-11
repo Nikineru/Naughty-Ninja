@@ -48,6 +48,17 @@ public class @Input : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""2dfbb53a-62a4-4395-b30f-5e9802c628c9"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Smart Phone"",
+                    ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""2D Vector"",
                     ""id"": ""02f8c83f-05bc-424b-8626-f86ea54f08ad"",
                     ""path"": ""2DVector"",
@@ -233,6 +244,11 @@ public class @Input : IInputActionCollection, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Smart Phone"",
+            ""bindingGroup"": ""Smart Phone"",
+            ""devices"": []
         }
     ]
 }");
@@ -378,6 +394,15 @@ public class @Input : IInputActionCollection, IDisposable
         {
             if (m_MouseKeyBoardSchemeIndex == -1) m_MouseKeyBoardSchemeIndex = asset.FindControlSchemeIndex("Mouse & KeyBoard");
             return asset.controlSchemes[m_MouseKeyBoardSchemeIndex];
+        }
+    }
+    private int m_SmartPhoneSchemeIndex = -1;
+    public InputControlScheme SmartPhoneScheme
+    {
+        get
+        {
+            if (m_SmartPhoneSchemeIndex == -1) m_SmartPhoneSchemeIndex = asset.FindControlSchemeIndex("Smart Phone");
+            return asset.controlSchemes[m_SmartPhoneSchemeIndex];
         }
     }
     public interface IHookActions
