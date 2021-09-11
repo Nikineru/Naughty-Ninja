@@ -21,11 +21,10 @@ public class Rope : MonoBehaviour
 
     private float move_timer = 0;
 
-    [SerializeField] public bool isGrappling = false;
-
+    public bool isGrappling = false;
     private LineRenderer rope_renderer;
     bool drawLine = true;
-    bool straightLine = true;
+    bool is_straight_rope = true;
     #endregion
 
     private void Awake()
@@ -36,7 +35,7 @@ public class Rope : MonoBehaviour
     private void OnEnable()
     {
         move_timer = 0;
-        straightLine = false;
+        is_straight_rope = false;
         curret_waves_size = waves_size;
 
         rope_renderer.enabled = true;
@@ -59,24 +58,12 @@ public class Rope : MonoBehaviour
 
     private void DrawRope()
     {
-        if (!straightLine)
+        if (is_straight_rope)
         {
-            if (rope_renderer.GetPosition(percision - 1).x != hook.grapplePoint.x)
-            {
-                DrawWavesRope();
-            }
-            else
-            {
-                straightLine = true;
-            }
-        }
-        else
-        {
-            if (!isGrappling)
+            if (isGrappling == false)
             {
                 hook.Grapple();
                 isGrappling = true;
-                print("Do");
             }
             if (curret_waves_size > 0)
             {
@@ -87,6 +74,17 @@ public class Rope : MonoBehaviour
             {
                 curret_waves_size = 0;
                 DrawStraightRope();
+            }
+        }
+        else
+        {
+            if (rope_renderer.GetPosition(percision - 1).x != hook.grapplePoint.x)
+            {
+                DrawWavesRope();
+            }
+            else
+            {
+                is_straight_rope = true;
             }
         }
     }
