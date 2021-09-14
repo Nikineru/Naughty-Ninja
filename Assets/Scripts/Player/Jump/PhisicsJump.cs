@@ -32,6 +32,7 @@ public class PhisicsJump : MonoBehaviour
 
         _playTime.Play(_duration, (progress) =>
         {
+            _rigidbody.velocity = Vector2.zero;
             transform.position = Vector3.Lerp(start_position, target, progress) + (Vector3)fxPlayTime.LastChanges;
             return Vector3.zero;
         });
