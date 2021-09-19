@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Hook : MonoBehaviour
 {
+    [SerializeField] private event Action Grabbed;
+    [SerializeField] private event Action UnGrabbed;
+
     [Header("Scripts:")]
     public Rope grappleRope;
     [Header("Layer Settings:")]
@@ -119,7 +123,6 @@ public class Hook : MonoBehaviour
                 if (Launch_Type == LaunchType.Transform_Launch)
                 {
                     gunHolder.position = Vector3.Lerp(gunHolder.position, grapplePoint, Time.deltaTime * launchSpeed);
-                    print("Launch");
                 }
             }
         }
@@ -151,6 +154,8 @@ public class Hook : MonoBehaviour
             RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, Mouse_FirePoint_DistanceVector.normalized);
             if ((_hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll) && ((Vector2.Distance(_hit.point, firePoint.position) <= maxDistance) || !hasMaxDistance))
             {
+                Grabbed?.Invoke();
+
                 grapplePoint = _hit.point;
                 DistanceVector = grapplePoint - (Vector2)gunPivot.position;
                 grappleRope.enabled = true;

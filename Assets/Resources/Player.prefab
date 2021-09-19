@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5998077362706031488}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8, y: 0, z: 0}
+  m_LocalPosition: {x: 0.84, y: 0, z: 0}
   m_LocalScale: {x: 1.4563534, y: 3.0774972, z: 1.4916245}
   m_Children:
   - {fileID: 5998077364488089804}
@@ -87,8 +87,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5998077363319616496}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.25, y: 0, z: 0}
-  m_LocalScale: {x: 0.5664833, y: 0.20714885, z: 0.67041004}
+  m_LocalPosition: {x: 2.6, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 0.6, z: 0}
   m_Children:
   - {fileID: 5998077362706031495}
   m_Father: {fileID: 5998077363751528488}
@@ -189,11 +189,13 @@ GameObject:
   - component: {fileID: 5998077363698990626}
   - component: {fileID: 5998077363698990631}
   - component: {fileID: 5998077363698990624}
+  - component: {fileID: 9117963764442243706}
   - component: {fileID: 3034015529997603134}
   - component: {fileID: 145436367297259091}
   - component: {fileID: 3793397864846706004}
   - component: {fileID: 5256347537376504594}
-  - component: {fileID: 9117963764442243706}
+  - component: {fileID: 8857010171717532246}
+  - component: {fileID: 3017219490046718927}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -310,6 +312,22 @@ SpringJoint2D:
   m_Distance: 0.005
   m_DampingRatio: 1
   m_Frequency: 0
+--- !u!70 &9117963764442243706
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5998077363698990627}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.1, y: -0.15}
+  m_Size: {x: 4.5, y: 7.5}
+  m_Direction: 0
 --- !u!114 &3034015529997603134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,22 +422,49 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _height: 5
---- !u!70 &9117963764442243706
-CapsuleCollider2D:
+--- !u!114 &8857010171717532246
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5998077363698990627}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -1.1, y: -0.15}
-  m_Size: {x: 4.5, y: 7.5}
-  m_Direction: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2917e88b2d3b62c438f01dfd67a6c6eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touched_obstacle:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3017219490046718927}
+        m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  detect_type: 2
+--- !u!114 &3017219490046718927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5998077363698990627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e24580d30d1ce14c898c40ec4b99e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite_renderer: {fileID: 5998077363698990626}
+  mover: {fileID: 145436367297259091}
+  hook: {fileID: 3593988704126142754}
 --- !u!1 &5998077363751528489
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,6 +638,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4e54536f4420b4e9aa8c533c84b108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Grabbed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 145436367297259091}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Absolved:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 145436367297259091}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   hook: {fileID: 3593988704126142754}
   percision: 100
   straightening_speed: 10

@@ -8,10 +8,10 @@ public static class CameraExstentions
         return (viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1);
     }
 
-    public static bool IsSeeingPointHorizontal(this Camera camera, Vector3 point)
+    public static bool IsSeeingPointHorizontal(this Camera camera, Vector3 point, float margin=1)
     {
         Vector3 viewPos = camera.WorldToViewportPoint(point);
-        return (viewPos.x >= 0 && viewPos.x <= 1);
+        return (viewPos.x >= 0 - margin && viewPos.x <= 1 * margin);
     }
 
     public static bool IsSeeingPointVertical(this Camera camera, Vector3 point)

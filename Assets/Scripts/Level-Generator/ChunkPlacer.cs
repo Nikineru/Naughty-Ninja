@@ -10,7 +10,7 @@ public class ChunkPlacer : MonoBehaviour
     [SerializeField] Chunk[] chunks_prefabs;
 
     private List<Chunk> spawned_chunks = new List<Chunk>();
-    private const  int max_chunks_count = 3;
+    private const  int max_chunks_count = 4;
     private Camera _camera;
 
     private void Start()
@@ -21,7 +21,7 @@ public class ChunkPlacer : MonoBehaviour
 
     private void Update()
     {
-        if (_camera.IsSeeingPointHorizontal(spawned_chunks[spawned_chunks.Count - 1].End.position))
+        if (_camera.IsSeeingPointHorizontal(spawned_chunks[spawned_chunks.Count - 1].End.position, margin: 1.5f))
         {
             SpawnChunk();
         }

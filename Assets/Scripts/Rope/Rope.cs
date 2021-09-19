@@ -1,7 +1,12 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Rope : MonoBehaviour
 {
+    [SerializeField] private UnityEvent Grabbed;
+    [SerializeField] private UnityEvent Absolved;
+
+
     #region fields
     [Header("Refrences:")]
     [SerializeField] private Hook hook;
@@ -45,6 +50,7 @@ public class Rope : MonoBehaviour
     {
         isGrappling = false;
         rope_renderer.enabled = false;
+        Absolved?.Invoke();
     }
     private void Update()
     {
@@ -85,6 +91,7 @@ public class Rope : MonoBehaviour
             else
             {
                 is_straight_rope = true;
+                Grabbed?.Invoke();
             }
         }
     }
