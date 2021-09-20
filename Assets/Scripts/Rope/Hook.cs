@@ -67,13 +67,14 @@ public class Hook : MonoBehaviour
     Vector2 Mouse_FirePoint_DistanceVector;
 
     public Rigidbody2D ballRigidbody;
+    private float gravity_scale;
 
 
     private void Awake()
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
-        ballRigidbody.gravityScale = 1;
+        gravity_scale = ballRigidbody.gravityScale;
 
         _Camera = Camera.main;
 
@@ -90,7 +91,7 @@ public class Hook : MonoBehaviour
 
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
-            ballRigidbody.gravityScale = 1;
+            ballRigidbody.gravityScale = gravity_scale;
         };
     }
 
@@ -185,6 +186,7 @@ public class Hook : MonoBehaviour
         {
             if (Launch_Type == LaunchType.Transform_Launch)
             {
+                gravity_scale = ballRigidbody.gravityScale;
                 ballRigidbody.gravityScale = 0;
                 ballRigidbody.velocity = Vector2.zero;
             }
