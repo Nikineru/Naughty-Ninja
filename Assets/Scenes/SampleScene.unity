@@ -446,6 +446,10 @@ PrefabInstance:
       propertyPath: _speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3017219490046718927, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
+      propertyPath: surface_changer
+      value: 
+      objectReference: {fileID: 1371691914}
     - target: {fileID: 3793397864846706004, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
       propertyPath: _lenght
       value: 5
@@ -463,12 +467,16 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5256347537376504594, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
+      propertyPath: surface_slider
+      value: 
+      objectReference: {fileID: 1371691909}
+    - target: {fileID: 5256347537376504594, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
       propertyPath: _heightCurve.m_Curve.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5256347537376504594, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
       propertyPath: _heightCurve.m_Curve.Array.data[1].time
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5256347537376504594, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
       propertyPath: _heightCurve.m_Curve.Array.data[2].time
@@ -484,11 +492,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5256347537376504594, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
       propertyPath: _heightCurve.m_Curve.Array.data[0].inSlope
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5256347537376504594, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
       propertyPath: _heightCurve.m_Curve.Array.data[1].inSlope
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5256347537376504594, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
       propertyPath: _heightCurve.m_Curve.Array.data[2].inSlope
@@ -496,7 +504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5256347537376504594, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
       propertyPath: _heightCurve.m_Curve.Array.data[0].outSlope
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5256347537376504594, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
       propertyPath: _heightCurve.m_Curve.Array.data[1].inWeight
@@ -504,7 +512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5256347537376504594, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
       propertyPath: _heightCurve.m_Curve.Array.data[1].outSlope
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5256347537376504594, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
       propertyPath: _heightCurve.m_Curve.Array.data[2].inWeight
@@ -582,13 +590,31 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3793397864846706004, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
+    - {fileID: 5256347537376504594, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
 --- !u!1 &1371691903 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5998077363698990627, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
   m_PrefabInstance: {fileID: 731447877}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &1371691904 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 5998077363698990631, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
+  m_PrefabInstance: {fileID: 731447877}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1371691909 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3034015529997603134, guid: d6482ac5ba3bdb641acac70e0f46a766, type: 3}
+  m_PrefabInstance: {fileID: 731447877}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371691903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14cded53e3cd5b47a162e72e54ea0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1371691914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,7 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7432e751a2aa6fd4ea3be1f376ad12eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 0}
+  rigidbody: {fileID: 1371691904}
 --- !u!114 &1565266931 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -1874317435826864088, guid: b62ea19a9063a3146829fc8213504b43, type: 3}
