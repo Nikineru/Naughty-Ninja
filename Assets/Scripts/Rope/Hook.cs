@@ -74,7 +74,7 @@ public class Hook : MonoBehaviour
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
-        gravity_scale = ballRigidbody.gravityScale;
+        //gravity_scale = ballRigidbody.gravityScale;
 
         _Camera = Camera.main;
 
@@ -91,7 +91,7 @@ public class Hook : MonoBehaviour
 
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
-            ballRigidbody.gravityScale = gravity_scale;
+            //ballRigidbody.gravityScale = gravity_scale;
         };
     }
 
@@ -186,8 +186,8 @@ public class Hook : MonoBehaviour
         {
             if (Launch_Type == LaunchType.Transform_Launch)
             {
-                gravity_scale = ballRigidbody.gravityScale;
-                ballRigidbody.gravityScale = 0;
+                //gravity_scale = ballRigidbody.gravityScale;
+                //ballRigidbody.gravityScale = 0;
                 ballRigidbody.velocity = Vector2.zero;
             }
             if (Launch_Type == LaunchType.Physics_Launch)
