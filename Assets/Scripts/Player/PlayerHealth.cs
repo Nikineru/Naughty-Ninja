@@ -4,7 +4,6 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer sprite_renderer;
     [SerializeField] private PlayerMover mover;
-    [SerializeField] private SurfaceChanger surface_changer;
     [SerializeField] private Hook hook;
 
     public void Die() 
@@ -12,7 +11,5 @@ public class PlayerHealth : MonoBehaviour
         sprite_renderer.color = Color.red;
         mover.enabled = false;
         hook.enabled = false;
-        surface_changer.enabled = false;
-        print("Died");
     }
 }

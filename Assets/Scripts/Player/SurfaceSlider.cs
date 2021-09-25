@@ -3,7 +3,7 @@ using UnityEngine;
 public class SurfaceSlider : MonoBehaviour
 {
     public bool IsOnSurface { get; private set; }
-    public Vector2 _normal { get; private set; }
+    private Vector2 _normal;
 
     public Vector2 Project(Vector2 forward) 
     {

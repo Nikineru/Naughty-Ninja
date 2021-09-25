@@ -6,7 +6,6 @@ public class JumpFX : MonoBehaviour
     [SerializeField] private AnimationCurve _heightCurve;
     [SerializeField] private float _height;
     [SerializeField] private PureAnimation _playtime;
-    [SerializeField] private SurfaceSlider surface_slider;
 
     private void Awake()
     {
@@ -15,12 +14,9 @@ public class JumpFX : MonoBehaviour
 
     public PureAnimation PlayAnimation(Transform jumper, float duration) 
     {
-        Vector2 start_position = transform.position;
-
         _playtime.Play(duration, (float progress) =>
         {
-            Vector2 animation_value = new Vector2(0, surface_slider._normal.y * _height * _heightCurve.Evaluate(progress));
-            Vector2 position = Vector2.Scale(animation_value, jumper.up);
+            Vector2 position = Vector2.Scale(new Vector2(0, _height * _heightCurve.Evaluate(progress)), jumper.up);
             return position;
         });
 
