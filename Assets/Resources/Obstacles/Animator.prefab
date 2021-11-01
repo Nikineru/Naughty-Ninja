@@ -61,8 +61,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4229296023084217367}
   - component: {fileID: 809551081197836399}
-  - component: {fileID: 6947187625105585818}
   - component: {fileID: 5486440572211083623}
+  - component: {fileID: 7165913218763994825}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Untagged
@@ -124,7 +124,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: ef0f9901e056e534abd5431c16283354, type: 3}
+  m_Sprite: {fileID: -3579472602480421216, guid: 19aaa3d75a4a3044a874aad6f6aca43e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -135,8 +135,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &6947187625105585818
-BoxCollider2D:
+--- !u!114 &5486440572211083623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5452627117859240068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5648db53c71b7e44b03ec25c27c8b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!60 &7165913218763994825
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -152,24 +164,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.7066667, y: 1.7066667}
+    oldSize: {x: 0.53999996, y: 0.89020056}
     newSize: {x: 5, y: 5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.7066667, y: 1.7066667}
-  m_EdgeRadius: 0
---- !u!114 &5486440572211083623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5452627117859240068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5648db53c71b7e44b03ec25c27c8b16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Points:
+    m_Paths:
+    - - {x: -0.267, y: -0.45}
+      - {x: 0.267, y: -0.45}
+      - {x: 0, y: 0.4}

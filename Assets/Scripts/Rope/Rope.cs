@@ -7,7 +7,7 @@ public class Rope : MonoBehaviour
 {
     [SerializeField] private UnityEvent Grabbed;
     [SerializeField] private UnityEvent Absolved;
-    [SerializeField] private Transform VisualEffect;
+    [SerializeField] private ParticleSystem VisualEffect;
 
     #region fields
     [Header("Refrences:")]
@@ -30,14 +30,18 @@ public class Rope : MonoBehaviour
 
     public bool isGrappling = false;
     private LineRenderer rope_renderer;
-    bool drawLine = true;
-    bool is_straight_rope = true;
+    private bool drawLine = true;
+    private bool is_straight_rope = true;
+    private Texture2D screen_texture;
+    private Camera _camera;
     #endregion
 
     private void Awake()
     {
         rope_renderer = GetComponent<LineRenderer>();
         rope_renderer.enabled = false;
+        screen_texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        _camera = Camera.main;
     }
     private void OnEnable()
     {
@@ -121,21 +125,17 @@ public class Rope : MonoBehaviour
     private IEnumerator DefineColor()
     {
         yield return new WaitForEndOfFrame();
-        Texture2D tex;
-        tex = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
 
-        Vector2 grapplePosition = Camera.main.WorldToScreenPoint(hook.grapplePoint + hook.Mouse_FirePoint_DistanceVector.normalized);
+        Vector2 sceen_position = _camera.WorldToScreenPoint(hook.grapplePoint + hook.Mouse_FirePoint_DistanceVector.normalized);
 
-        float x = grapplePosition.x;
-        float y = grapplePosition.y;
+        float x = sceen_position.x;
+        float y = sceen_position.y;
 
-        tex.ReadPixels(new Rect(x, y, 1, 1), 0, 0);
-        tex.Apply();
+        screen_texture.ReadPixels(new Rect(x, y, 1, 1), 0, 0);
+        screen_texture.Apply();
 
-        Color color = tex.GetPixel(0, 0);
-        print(color);
-        ParticleSystem.MainModule settings = VisualEffect.GetComponent<ParticleSystem>().main;
+        Color color = screen_texture.GetPixel(0, 0);
+        ParticleSystem.MainModule settings = VisualEffect.main;
         settings.startColor = color;
-
     }
 }
