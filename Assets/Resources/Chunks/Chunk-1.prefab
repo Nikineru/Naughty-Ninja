@@ -443,7 +443,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434186161068634298}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.89, y: 3.84, z: 0}
+  m_LocalPosition: {x: -24.89, y: 2.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5027944933490386975}
@@ -1031,7 +1031,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5813703413013795434}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.89, y: -4.41, z: 0}
+  m_LocalPosition: {x: 24.89, y: -2.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5027944933490386975}
@@ -1706,7 +1706,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pos1: {fileID: 8195715525804124507}
   pos2: {fileID: 1369226478491323599}
-  moneyPrefab: {fileID: 3570561178745423336, guid: 0c9f1afd13ae9e949ae86e8b6ad974de, type: 3}
+  moneyPrefab: {fileID: 810498774387837728, guid: be3707b75d352a440842c4f058829310, type: 3}
 --- !u!1 &9044347266274263563
 GameObject:
   m_ObjectHideFlags: 0

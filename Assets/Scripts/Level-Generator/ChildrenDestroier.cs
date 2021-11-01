@@ -17,7 +17,7 @@ public class ChildrenDestroier : MonoBehaviour
     [SerializeField] private Vector2 scale_offset;
     [SerializeField] private Vector2 position_offset;
 
-    private void Awake()
+    private void OnEnable()
     {
         while (transform.childCount > leave_count)
         {
@@ -29,6 +29,11 @@ public class ChildrenDestroier : MonoBehaviour
         {
             Randomize(child);
         }
+    }
+
+    public void Initialize(int leave_count)
+    {
+        this.leave_count = leave_count;
     }
 
     private void Randomize(Transform target) 
