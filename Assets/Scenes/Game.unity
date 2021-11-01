@@ -324,7 +324,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: cd7124e1ac0811e4580d6a40914f342b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -627,7 +627,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7432e751a2aa6fd4ea3be1f376ad12eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 1371691904}
+  _rigidbody: {fileID: 1371691904}
+  slider: {fileID: 1371691909}
 --- !u!114 &1565266931 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -1874317435826864088, guid: b62ea19a9063a3146829fc8213504b43, type: 3}

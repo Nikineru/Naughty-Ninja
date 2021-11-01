@@ -185,6 +185,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leave_count: 1
+  mode: 0
+  scale_offset: {x: 0, y: 0}
+  position_offset: {x: 0, y: 0}
 --- !u!1 &2912963420638906037
 GameObject:
   m_ObjectHideFlags: 0

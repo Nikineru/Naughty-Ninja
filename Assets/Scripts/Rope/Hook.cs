@@ -35,6 +35,8 @@ public class Hook : MonoBehaviour
     [SerializeField] private float targetDistance = 3;
     [SerializeField] private float targetFrequency = 3;
 
+    [SerializeField] private float cool_down;
+
     private Vector2 MousePosition
     {
         get
@@ -52,6 +54,7 @@ public class Hook : MonoBehaviour
     private Input _Input;
     private Camera _Camera;
     private bool IsHold;
+    private float curret_cool_down;
 
     private enum LaunchType
     {
@@ -74,7 +77,7 @@ public class Hook : MonoBehaviour
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
-        gravity_scale = ballRigidbody.gravityScale;
+        //gravity_scale = ballRigidbody.gravityScale;
 
         _Camera = Camera.main;
 
@@ -82,8 +85,7 @@ public class Hook : MonoBehaviour
 
         _Input.Hook.Use.performed += context =>
         {
-            IsHold = true;
-            SetGrapplePoint();
+            StartGrapple();
         };
         _Input.Hook.Use.canceled += context =>
         {
@@ -91,7 +93,7 @@ public class Hook : MonoBehaviour
 
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
-            ballRigidbody.gravityScale = gravity_scale;
+            //ballRigidbody.gravityScale = gravity_scale;
         };
     }
 
@@ -103,7 +105,6 @@ public class Hook : MonoBehaviour
     {
         _Input.Disable();
     }
-
     private void Update()
     {
         Mouse_FirePoint_DistanceVector = (Vector3)MousePosition - gunPivot.position;
@@ -131,9 +132,25 @@ public class Hook : MonoBehaviour
         {
             RotateGun(MousePosition, true);
         }
+
+        curret_cool_down += Time.deltaTime;
     }
 
-    void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
+
+    private void StartGrapple() 
+    {
+        if (curret_cool_down < cool_down)
+            return;
+
+        if (Mouse_FirePoint_DistanceVector.normalized.x <= 0)
+            return;
+
+        IsHold = true;
+        curret_cool_down = 0;
+
+        SetGrapplePoint();
+    }
+    private void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
     {
         Vector3 distanceVector = lookPoint - gunPivot.position;
 
@@ -147,8 +164,7 @@ public class Hook : MonoBehaviour
             gunPivot.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
     }
-
-    void SetGrapplePoint()
+    private void SetGrapplePoint()
     {
         if (Physics2D.Raycast(firePoint.position, Mouse_FirePoint_DistanceVector.normalized))
         {
@@ -163,7 +179,6 @@ public class Hook : MonoBehaviour
             }
         }
     }
-
     public void Grapple()
     {
         if (!launchToPoint && !autoCongifureDistance)
@@ -186,8 +201,8 @@ public class Hook : MonoBehaviour
         {
             if (Launch_Type == LaunchType.Transform_Launch)
             {
-                gravity_scale = ballRigidbody.gravityScale;
-                ballRigidbody.gravityScale = 0;
+                //gravity_scale = ballRigidbody.gravityScale;
+                //ballRigidbody.gravityScale = 0;
                 ballRigidbody.velocity = Vector2.zero;
             }
             if (Launch_Type == LaunchType.Physics_Launch)
