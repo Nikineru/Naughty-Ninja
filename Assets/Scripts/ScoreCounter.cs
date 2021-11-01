@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ScoreCounter : MonoBehaviour
 {
@@ -16,15 +15,18 @@ public class ScoreCounter : MonoBehaviour
         set 
         {
             score = value;
-            score_output.text = $"Score: {score}";
+            score_output.text = $"Score {System.Math.Round(score, 2)}";
         }
     }
     private float score;
+    private float last_player_x = 0;
 
     private void Update()
     {
-        float player_shift = (float)System.Math.Round(player.transform.position.x, 2);
+        float player_x = player.transform.position.x;
+        float shift = player_x - last_player_x;
 
-        Score =  player_shift > Score ? player_shift : Score;
+        Score += shift > 0 ? shift : 0;
+        last_player_x = player_x;
     }
 }
