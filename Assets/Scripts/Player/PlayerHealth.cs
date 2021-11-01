@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] private UnityEvent Died;
+
     [SerializeField] private SpriteRenderer sprite_renderer;
     [SerializeField] private PlayerMover mover;
     [SerializeField] private SurfaceChanger surface_changer;
@@ -13,6 +16,7 @@ public class PlayerHealth : MonoBehaviour
         mover.enabled = false;
         hook.enabled = false;
         surface_changer.enabled = false;
-        print("Died");
+
+        Died?.Invoke();
     }
 }

@@ -6,8 +6,9 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private PhisicsJump _jumper;
     [SerializeField] private float _speed;
 
-    private Rigidbody2D _rigidbody;
     private SurfaceSlider _surfaceSlider;
+    private Rigidbody2D _rigidbody;
+    private float _curret_speed;
     private Input _input;
 
     private void Awake()
@@ -26,13 +27,14 @@ public class PlayerMover : MonoBehaviour
         Move(Vector2.right);
     }
 
+    public void StartMove() => _curret_speed = _speed;
     private void Move(Vector2 move_direction) 
     {
         if (_surfaceSlider.IsOnSurface == false)
             return;
 
         Vector2 along_surface_direction = _surfaceSlider.Project(move_direction.normalized);
-        Vector2 offest = along_surface_direction * _speed * Time.deltaTime;
+        Vector2 offest = along_surface_direction * _curret_speed * Time.deltaTime;
 
         _rigidbody.MovePosition(_rigidbody.position + offest);
     }

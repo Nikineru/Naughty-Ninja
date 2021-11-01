@@ -124,7 +124,7 @@ public class Rope : MonoBehaviour
         Texture2D tex;
         tex = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
 
-        Vector2 grapplePosition = Camera.main.WorldToScreenPoint(hook.grapplePoint + Mouse_FirePoint_DistanceVector.normalized);
+        Vector2 grapplePosition = Camera.main.WorldToScreenPoint(hook.grapplePoint + hook.Mouse_FirePoint_DistanceVector.normalized);
 
         float x = grapplePosition.x;
         float y = grapplePosition.y;
