@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -5,7 +7,7 @@ public class Rope : MonoBehaviour
 {
     [SerializeField] private UnityEvent Grabbed;
     [SerializeField] private UnityEvent Absolved;
-
+    [SerializeField] private Transform VisualEffect;
 
     #region fields
     [Header("Refrences:")]
@@ -70,6 +72,9 @@ public class Rope : MonoBehaviour
             {
                 hook.Grapple();
                 isGrappling = true;
+                StartCoroutine(DefineColor());
+                Instantiate(VisualEffect, hook.grapplePoint, Quaternion.identity);
+
             }
             if (curret_waves_size > 0)
             {
@@ -112,5 +117,25 @@ public class Rope : MonoBehaviour
         rope_renderer.positionCount = 2;
         rope_renderer.SetPosition(0, hook.grapplePoint);
         rope_renderer.SetPosition(1, hook.firePoint.position);
+    }
+    private IEnumerator DefineColor()
+    {
+        yield return new WaitForEndOfFrame();
+        Texture2D tex;
+        tex = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+
+        Vector2 grapplePosition = Camera.main.WorldToScreenPoint(hook.grapplePoint + Mouse_FirePoint_DistanceVector.normalized);
+
+        float x = grapplePosition.x;
+        float y = grapplePosition.y;
+
+        tex.ReadPixels(new Rect(x, y, 1, 1), 0, 0);
+        tex.Apply();
+
+        Color color = tex.GetPixel(0, 0);
+        print(color);
+        ParticleSystem.MainModule settings = VisualEffect.GetComponent<ParticleSystem>().main;
+        settings.startColor = color;
+
     }
 }
