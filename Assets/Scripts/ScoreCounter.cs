@@ -15,30 +15,27 @@ public class ScoreCounter : MonoBehaviour
         set 
         {
             score = value;
-            score_output.text = $"Score {System.Math.Round(score, 2)}";
+            score_output.text = $"Score:\n{System.Math.Round(score, 2)}";
         }
     }
     private float score;
 
-    private float last_player_x = 0;
-    private float max_player_x = 0;
+    private float max_player_shift;
 
     private void Awake()
     {
-        max_player_x = player.transform.position.x;
+        max_player_shift = player.transform.position.x;
     }
 
     private void Update()
     {
         float player_x = player.transform.position.x;
-        float shift = player_x - last_player_x;
+        float shift = player_x - max_player_shift;
 
-        if (player_x > max_player_x) 
+        if (player_x > max_player_shift) 
         {
             Score += shift > 0 ? shift : 0;
-            max_player_x = player_x;
+            max_player_shift = player_x;
         }
-
-        last_player_x = player_x;
     }
 }
