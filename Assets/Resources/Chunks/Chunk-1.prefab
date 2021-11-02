@@ -1621,7 +1621,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5907938032070008487}
   - component: {fileID: -1874317435826864088}
-  - component: {fileID: -4957722847656086815}
   m_Layer: 0
   m_Name: Chunk-1
   m_TagString: Untagged
@@ -1692,22 +1691,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _id: 3c81aab9a3efbb1f9891fc9c57a23f9f
---- !u!114 &-4957722847656086815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8392146672190742416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f26bc0fbeaecc341900c72ae11f1da3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pos1: {fileID: 8195715525804124507}
-  pos2: {fileID: 1369226478491323599}
-  moneyPrefab: {fileID: 810498774387837728, guid: be3707b75d352a440842c4f058829310, type: 3}
+  _id: ffc224d3fadc06470d2b1e07445a2aea
 --- !u!1 &9044347266274263563
 GameObject:
   m_ObjectHideFlags: 0
