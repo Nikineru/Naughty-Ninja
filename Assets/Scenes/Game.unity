@@ -191,7 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2013817797}
   start_chunk: {fileID: 1565266931}
-  ProgressByDistance:
+  progress_by_distance:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -524,6 +524,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1874317435826864088, guid: b62ea19a9063a3146829fc8213504b43, type: 3}
+      propertyPath: ID
+      value: a2107ec9bb1479085d82ffabe78356d2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1874317435826864088, guid: b62ea19a9063a3146829fc8213504b43, type: 3}
+      propertyPath: _id
+      value: b01db652227a014c81906c5690707a35
+      objectReference: {fileID: 0}
     - target: {fileID: 5907938032070008487, guid: b62ea19a9063a3146829fc8213504b43, type: 3}
       propertyPath: m_RootOrder
       value: 2
