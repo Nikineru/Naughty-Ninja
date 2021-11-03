@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MoneyPicker : MonoBehaviour
 {
-    private string moneyTag = "Money";
-    public uint moneyAmount; 
-    // Start is called before the first frame update
+    public int money_amount { get; private set; } 
+
     public void OnTriggerEnter2D(Collider2D  other)
     {
-        if (other.CompareTag(moneyTag))
+        if (other.TryGetComponent(out Coin coin))
         {
-            moneyAmount += other.gameObject.GetComponent<Money>().amount;
+            money_amount += coin.Amount;
             Destroy(other.gameObject);
         }
     }

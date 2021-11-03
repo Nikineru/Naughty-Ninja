@@ -10,15 +10,26 @@ public class ChildrenDestroier : MonoBehaviour
         ChangeBoth
     }
 
-    [SerializeField] private int leave_count;
-    [SerializeField] private RandomizeMode mode;
 
-    [Header("Random offsets:")]
+    [SerializeField] private int leave_count;
+
+    [Header("")]
+
+    [SerializeField] private bool random_count = false;
+    [SerializeField] private int min_count;
+    [SerializeField] private int max_count;
+
+    [Header("")]
+
+    [SerializeField] private RandomizeMode mode;
     [SerializeField] private Vector2 scale_offset;
     [SerializeField] private Vector2 position_offset;
 
     private void OnEnable()
     {
+        if (random_count)
+            leave_count = Random.Range(min_count, max_count);
+
         while (transform.childCount > leave_count)
         {
             Transform destroy_child = transform.GetChild(Random.Range(0, transform.childCount));
@@ -29,11 +40,6 @@ public class ChildrenDestroier : MonoBehaviour
         {
             Randomize(child);
         }
-    }
-
-    public void Initialize(int leave_count)
-    {
-        this.leave_count = leave_count;
     }
 
     private void Randomize(Transform target) 

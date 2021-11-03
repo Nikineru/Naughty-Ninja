@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class MoneyGenerator : MonoBehaviour
+public class CoinsGenerator : MonoBehaviour
 {
     [SerializeField] private float spawn_range;
     [SerializeField] private float spawn_delay;
-    [SerializeField] private Money coin_prefab;
+    [SerializeField] private CoinsPattern[] coins_prefabs;
     private Camera _camera;
 
     private void Awake()
@@ -23,19 +23,27 @@ public class MoneyGenerator : MonoBehaviour
 
         float max_height = top_hit.transform == null ? right_borded_position.y + spawn_shift : top_hit.point.y;
         float min_height = bottom_hit.transform == null ? right_borded_position.y - spawn_shift : bottom_hit.point.y;
-        print(max_height);
 
-        max_height -= coin_prefab.Height / 2;
-        min_height += coin_prefab.Height / 2;
+        CoinsPattern coins_prefab = coins_prefabs[Random.Range(0, coins_prefabs.Length)];
+        var borders_shifts = coins_prefab.GetHorizontalBordersShift();
+
+        max_height -= borders_shifts.Top;
+        min_height += borders_shifts.Bottom;
+
+        if (min_height > max_height)
+            return;
 
         float curret_height = Random.Range(max_height, min_height);
-        Instantiate(coin_prefab, new Vector2(right_borded_position.x, max_height), Quaternion.identity);
+        Instantiate(coins_prefab, new Vector2(right_borded_position.x, min_height), Quaternion.identity);
     }
 
     private void OnDrawGizmos()
     {
-        if (_camera == null)
+        if (_camera == null) 
+        {
+            print("Not found Camera");
             return;
+        }
 
         Vector2 right_borded_position = _camera.ViewportToWorldPoint(new Vector2(1, 0.5f));
         float spawn_shift = spawn_range / 2;
