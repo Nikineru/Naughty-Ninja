@@ -579,7 +579,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1874317435826864088, guid: b62ea19a9063a3146829fc8213504b43, type: 3}
       propertyPath: _id
-      value: a67b36d9eede5de13c61bc4597a8fc72
+      value: 6bd47296ca07d38849e778bfe5b83d6a
+      objectReference: {fileID: 0}
+    - target: {fileID: 688070545118536940, guid: b62ea19a9063a3146829fc8213504b43, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.9941748
+      objectReference: {fileID: 0}
+    - target: {fileID: 688070545118536940, guid: b62ea19a9063a3146829fc8213504b43, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.9941748
+      objectReference: {fileID: 0}
+    - target: {fileID: 688070545118536943, guid: b62ea19a9063a3146829fc8213504b43, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1ea336eaef51baa478b3933a83b6ce0e, type: 3}
+    - target: {fileID: 688070545118536943, guid: b62ea19a9063a3146829fc8213504b43, type: 3}
+      propertyPath: m_Color.b
+      value: 0.16078432
+      objectReference: {fileID: 0}
+    - target: {fileID: 688070545118536943, guid: b62ea19a9063a3146829fc8213504b43, type: 3}
+      propertyPath: m_Color.g
+      value: 0.16078432
+      objectReference: {fileID: 0}
+    - target: {fileID: 688070545118536943, guid: b62ea19a9063a3146829fc8213504b43, type: 3}
+      propertyPath: m_Color.r
+      value: 0.16078432
       objectReference: {fileID: 0}
     - target: {fileID: 5907938032070008487, guid: b62ea19a9063a3146829fc8213504b43, type: 3}
       propertyPath: m_RootOrder
@@ -1549,14 +1573,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.7066667, y: 1.7066667}
+    oldSize: {x: 0.9941748, y: 0.9941748}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7066667, y: 1.7066667}
+  m_Size: {x: 0.9941748, y: 0.9941748}
   m_EdgeRadius: 0
 --- !u!1 &876026724
 GameObject:
@@ -2751,11 +2775,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1923239610666226688, guid: 7d313c241aaaeb94790288393df7e92c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 25
+      value: 43
       objectReference: {fileID: 0}
     - target: {fileID: 1923239610666226688, guid: 7d313c241aaaeb94790288393df7e92c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.86
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1923239610666226688, guid: 7d313c241aaaeb94790288393df7e92c, type: 3}
       propertyPath: m_LocalPosition.x

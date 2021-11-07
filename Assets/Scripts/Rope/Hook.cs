@@ -38,7 +38,7 @@ public class Hook : MonoBehaviour
     [SerializeField] private float cool_down;
 
     [Header("Grap Info")]
-    public Sprite ObjectGrapped;
+    public SpriteRenderer GrappedRenderer;
 
     private Vector2 MousePosition
     {
@@ -177,7 +177,7 @@ public class Hook : MonoBehaviour
                 Grabbed?.Invoke();
 
                 grapplePoint = _hit.point;
-                ObjectGrapped = _hit.transform.GetComponent<Sprite>();
+                GrappedRenderer = _hit.transform.GetComponent<SpriteRenderer>();
                 DistanceVector = grapplePoint - (Vector2)gunPivot.position;
                 grappleRope.enabled = true;
             }
