@@ -410,7 +410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7303219828865992696}
-  - component: {fileID: 6146604436617929534}
+  - component: {fileID: 5132386676488505769}
   m_Layer: 0
   m_Name: Spikes
   m_TagString: Untagged
@@ -435,7 +435,7 @@ Transform:
   m_Father: {fileID: 7880494731290123678}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6146604436617929534
+--- !u!114 &5132386676488505769
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -444,16 +444,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3327986804248041869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0d65cc7ce2231d4fa6f148537687fc2, type: 3}
+  m_Script: {fileID: 11500000, guid: d18e1346bc9cee24bbe2dae6a916d263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leave_count: 2
-  random_count: 0
+  unchanged_count: 2
+  randomize_count: 0
   min_count: 0
   max_count: 0
-  mode: 0
-  scale_offset: {x: 0, y: 0}
-  position_offset: {x: 0, y: 0}
 --- !u!1 &4108583274045409823
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,7 +751,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _id: 1fb70aa3b62e763e615f85a656c60c19
+  _id: 37c57133e51de8921480a2d504f427cf
 --- !u!1 &5592166096600411833
 GameObject:
   m_ObjectHideFlags: 0

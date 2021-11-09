@@ -10,6 +10,7 @@ public class Chunk : MonoBehaviour
 
     public AnimationCurve ChanceByDistanse { get => _ChanceByDistanse; }
     [SerializeField] private AnimationCurve _ChanceByDistanse;
+
     public string ID { get => _id; }
     [SerializeField] private string _id;
 

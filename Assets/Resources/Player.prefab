@@ -173,6 +173,8 @@ MonoBehaviour:
   autoCongifureDistance: 1
   targetDistance: 3
   targetFrequency: 1
+  cool_down: 0
+  GrappedRenderer: {fileID: 0}
   m_springJoint2D: {fileID: 5998077363698990624}
   grapplePoint: {x: 0, y: 0}
   DistanceVector: {x: 0, y: 0}
@@ -192,8 +194,6 @@ GameObject:
   - component: {fileID: 9117963764442243706}
   - component: {fileID: 3034015529997603134}
   - component: {fileID: 145436367297259091}
-  - component: {fileID: 3793397864846706004}
-  - component: {fileID: 5256347537376504594}
   - component: {fileID: 8857010171717532246}
   - component: {fileID: 3017219490046718927}
   - component: {fileID: -8920590487449315563}
@@ -353,76 +353,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 597a4dc825754b949a6e38eccb4332ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumper: {fileID: 3793397864846706004}
+  _jumper: {fileID: 0}
   _speed: 10
---- !u!114 &3793397864846706004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5998077363698990627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8145461e02502094e8b5b3d679ff38f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 5998077363698990631}
-  _surfaceSlider: {fileID: 3034015529997603134}
-  _fx: {fileID: 5256347537376504594}
-  _lenght: 5
-  _duration: 1
-  _jump_check_radius: 1
-  _ground_layer:
-    serializedVersion: 2
-    m_Bits: 64
-  _jump_checker: {fileID: 2781946532323717647}
---- !u!114 &5256347537376504594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5998077363698990627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b9e8466d0d5833498c547931475c2ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _heightCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.6
-      outSlope: 0.6
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5
-      value: 0.3
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -0.6
-      outSlope: -0.6
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _height: 5
 --- !u!114 &8857010171717532246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,8 +395,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e24580d30d1ce14c898c40ec4b99e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Died:
+    m_PersistentCalls:
+      m_Calls: []
   sprite_renderer: {fileID: 5998077363698990626}
   mover: {fileID: 145436367297259091}
+  surface_changer: {fileID: 0}
   hook: {fileID: 3593988704126142754}
 --- !u!114 &-8920590487449315563
 MonoBehaviour:
@@ -681,6 +617,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  VisualEffect: {fileID: 0}
   hook: {fileID: 3593988704126142754}
   percision: 100
   straightening_speed: 10

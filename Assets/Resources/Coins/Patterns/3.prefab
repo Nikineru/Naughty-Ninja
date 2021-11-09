@@ -85,13 +85,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cafd0241586a55d4b843837dd28cc69a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leave_count: 42
-  random_count: 0
+  unchanged_count: 42
+  randomize_count: 0
   min_count: 0
   max_count: 0
-  mode: 0
-  scale_offset: {x: 0, y: 0}
-  position_offset: {x: 1, y: 0}
 --- !u!1001 &236979920950811734
 PrefabInstance:
   m_ObjectHideFlags: 0
