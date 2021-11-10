@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class Chunk : MonoBehaviour
+[RequireComponent(typeof(PoolObject))]
+public class Chunk : PoolObject
 {
     public Transform Begin { get => _begin; }
     [SerializeField] private Transform _begin;
@@ -10,17 +11,4 @@ public class Chunk : MonoBehaviour
 
     public AnimationCurve ChanceByDistanse { get => _ChanceByDistanse; }
     [SerializeField] private AnimationCurve _ChanceByDistanse;
-
-    public string ID { get => _id; }
-    [SerializeField] private string _id;
-
-    private void OnValidate()
-    {
-        var hash = new Hash128();
-
-        hash.Append(GetInstanceID());
-        hash.Append(name);
-
-        _id = hash.ToString();
-    }
 }

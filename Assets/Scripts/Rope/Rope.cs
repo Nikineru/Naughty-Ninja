@@ -130,7 +130,6 @@ public class Rope : MonoBehaviour
     {
         Vector2 local_position = transform.InverseTransformPoint(hook.grapplePoint);
         Color pixel_color = GetPixel(local_position, renderer);
-        print(pixel_color);
         return pixel_color - (Color.white - renderer.color);
     }
     private Color GetPixel(Vector2 local_position, SpriteRenderer renderer)

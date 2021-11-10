@@ -1665,6 +1665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af42e65c6e71842418e85901557fdecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 549d058f86fc0dfd17312ca2d7f7c8e2
   _begin: {fileID: 4366493958765656293}
   _end: {fileID: 8294916714023346049}
   _ChanceByDistanse:
@@ -1691,7 +1692,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _id: ccffd6bc264a882af1b5001e04546fe4
 --- !u!1 &9044347266274263563
 GameObject:
   m_ObjectHideFlags: 0
