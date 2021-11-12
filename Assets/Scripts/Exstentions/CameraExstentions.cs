@@ -2,21 +2,56 @@ using UnityEngine;
 
 public static class CameraExstentions
 {
-    public static bool IsSeeingPoint(this Camera camera, Vector3 point)
+    public enum CheckPatterns 
     {
-        Vector3 viewPos = camera.WorldToViewportPoint(point);
-        return (viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1);
+        BothSides,
+        MinSide,
+        MaxSide
     }
 
-    public static bool IsSeeingPointHorizontal(this Camera camera, Vector3 point, float margin=1)
+    public static bool IsSeeingPoint(this Camera camera, Vector3 point, Vector2? margin=null, CheckPatterns horizontal_pattern = CheckPatterns.BothSides, CheckPatterns vertical_pattern = CheckPatterns.BothSides)
     {
-        Vector3 viewPos = camera.WorldToViewportPoint(point);
-        return (viewPos.x >= 0 - margin && viewPos.x <= 1 * margin);
+        if (margin != null)
+            point += (Vector3)margin;
+
+        return camera.IsSeeingPointHorizontal(point, pattern: horizontal_pattern) && camera.IsSeeingPointVertical(point, pattern:vertical_pattern);
     }
 
-    public static bool IsSeeingPointVertical(this Camera camera, Vector3 point)
+    public static bool IsSeeingPointHorizontal(this Camera camera, Vector3 point, float margin=0, CheckPatterns pattern = CheckPatterns.BothSides)
     {
+        point.x += margin;
         Vector3 viewPos = camera.WorldToViewportPoint(point);
-        return (viewPos.y >= 0 && viewPos.y <= 1);
+
+        switch (pattern) 
+        {
+            case CheckPatterns.BothSides:
+                return viewPos.x >= 0 && viewPos.x <= 1;
+            case CheckPatterns.MinSide:
+                return viewPos.x >= 0;
+            case CheckPatterns.MaxSide:
+                return viewPos.x <= 1;
+
+        }
+
+        return false;
+    }
+
+    public static bool IsSeeingPointVertical(this Camera camera, Vector3 point, float margin = 0, CheckPatterns pattern = CheckPatterns.BothSides)
+    {
+        point.y += margin;
+        Vector3 viewPos = camera.WorldToViewportPoint(point);
+
+        switch (pattern)
+        {
+            case CheckPatterns.BothSides:
+                return viewPos.y >= 0 && viewPos.y <= 1;
+            case CheckPatterns.MinSide:
+                return viewPos.y >= 0;
+            case CheckPatterns.MaxSide:
+                return viewPos.y <= 1;
+
+        }
+
+        return false;
     }
 }

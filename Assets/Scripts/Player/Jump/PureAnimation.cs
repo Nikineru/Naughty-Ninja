@@ -30,11 +30,11 @@ public class PureAnimation
         while (progress < 1)
         {
             expiredTime += Time.deltaTime;
-            progress += expiredTime / duration;
+            progress += 0.01f;
 
             LastChanges = body.Invoke(progress);
             
-            yield return null;
+            yield return new WaitForSeconds(duration / 100);
         }
     }
 }

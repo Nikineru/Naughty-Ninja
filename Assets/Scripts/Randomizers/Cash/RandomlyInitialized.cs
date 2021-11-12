@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
 public class RandomlyInitialized : PoolObject
@@ -10,6 +9,7 @@ public class RandomlyInitialized : PoolObject
     private void OnValidate()
     {
         _camera = Camera.main;
+        CalculateID();
     }
 
     public bool GetInitializePosition(ref Vector3 initialize_position, float spawn_range, float accuracy=5) 

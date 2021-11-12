@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static CameraExstentions;
 
 public class ChunkPlacer : Pool<Chunk>
 {
@@ -19,11 +20,14 @@ public class ChunkPlacer : Pool<Chunk>
     }
     private void Update()
     {
-        if (_camera.IsSeeingPointHorizontal(spawned_chunks[spawned_chunks.Count - 1].End.position, margin: 1.5f))
+        if (spawned_chunks.Count == 0)
+            return;
+
+        if (_camera.IsSeeingPointHorizontal(spawned_chunks[spawned_chunks.Count - 1].End.position, margin: -5, pattern: CheckPatterns.MaxSide))
         {
             SpawnChunk();
         }
-        if (_camera.IsSeeingPointHorizontal(spawned_chunks[0].End.position, margin: -1.5f)) 
+        if (_camera.IsSeeingPointHorizontal(spawned_chunks[0].End.position, margin: -5f, pattern: CheckPatterns.MinSide) == false) 
         {
             Push(spawned_chunks[0]);
         }
@@ -62,7 +66,7 @@ public class ChunkPlacer : Pool<Chunk>
 
         return chunks_prefabs[chunks_prefabs.Count() - 1];
     }
-    protected override void PushIternal()
+    protected override void PushIternal(Chunk target)
     {
         spawned_chunks.RemoveAt(0);
     }

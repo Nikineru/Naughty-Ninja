@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Pool<T> : MonoBehaviour where T : PoolObject
 {
     protected List<T> pool = new List<T>();
-    protected int max_pool_size = 5;
+    [SerializeField] protected int max_pool_size = 5;
 
     protected T Pull(T target) 
     {
@@ -15,7 +15,7 @@ public abstract class Pool<T> : MonoBehaviour where T : PoolObject
             return null;
 
         pool.Remove(instance);
-        PullIternal();
+        PullIternal(target, instance);
 
         return instance;
     }
@@ -29,11 +29,11 @@ public abstract class Pool<T> : MonoBehaviour where T : PoolObject
             pool.RemoveAt(0);
         }
 
-        PushIternal();
+        PushIternal(target);
     }
 
-    protected virtual void PullIternal() { }
-    protected virtual void PushIternal() { }
+    protected virtual void PullIternal(T target, T instance) { }
+    protected virtual void PushIternal(T target) { }
 
     public override string ToString()
     {
@@ -41,7 +41,7 @@ public abstract class Pool<T> : MonoBehaviour where T : PoolObject
 
         foreach (T item in pool)
         {
-            result += item.name + ", ";
+            result += item.transform.GetInstanceID() + ", ";
         }
 
         return result;

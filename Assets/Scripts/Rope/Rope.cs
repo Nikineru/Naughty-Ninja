@@ -1,87 +1,86 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Rope : MonoBehaviour
 {
-    [SerializeField] private UnityEvent Grabbed;
-    [SerializeField] private UnityEvent Absolved;
-    [SerializeField] private ParticleSystem VisualEffect;
+    public bool IsGrappling { get; private set; }
+    public bool IsDrawing { get; private set; }
 
-    #region fields
+    [Header("Events")]
+    [SerializeField] private UnityEvent grabbed;
+    [SerializeField] private UnityEvent absolved;
+
     [Header("Refrences:")]
-    [SerializeField] private Hook hook;
+    [SerializeField] private ParticleSystem visual_effect;
 
     [Header("Settings:")]
     [SerializeField] private int percision;
     [Range(0, 100)] [SerializeField] private float straightening_speed;
 
     [Header("Animation:")]
-    public AnimationCurve ropeAnimationCurve;
+    public AnimationCurve rope_curve;
     [SerializeField] [Range(0.01f, 4)] private float waves_size;
     private float curret_waves_size;
 
     [Header("Rope Speed:")]
-    public AnimationCurve ropeLaunchSpeedCurve;
-    [SerializeField] [Range(1, 50)] private float ropeLaunchSpeedMultiplayer = 4;
+    public AnimationCurve launch_speed_curve;
+    [SerializeField] [Range(1, 50)] private float launch_speed = 4;
 
     private float move_timer = 0;
-
-    public bool isGrappling = false;
     private LineRenderer rope_renderer;
-    private bool drawLine = true;
     private bool is_straight_rope = true;
-    private Texture2D screen_texture;
-    private Camera _camera;
-    #endregion
+
+    private Transform start_point;
+    private RaycastHit2D grabbed_hit;
 
     private void Awake()
     {
         rope_renderer = GetComponent<LineRenderer>();
         rope_renderer.enabled = false;
-        screen_texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-        _camera = Camera.main;
     }
-    private void OnEnable()
+    private void Update()
     {
+        if (IsDrawing == false)
+            return;
+
+        move_timer += Time.deltaTime;
+        DrawRope();
+    }
+
+    public void StartGrapp(Transform start_point, RaycastHit2D hit) 
+    {
+        grabbed_hit = hit;
+        this.start_point = start_point;
+
         move_timer = 0;
+        IsDrawing = true;
         is_straight_rope = false;
         curret_waves_size = waves_size;
 
         rope_renderer.enabled = true;
         rope_renderer.positionCount = percision;
     }
-    private void OnDisable()
+    public void StopDraw() 
     {
-        isGrappling = false;
+        IsDrawing = false;
+        IsGrappling = false;
         rope_renderer.enabled = false;
-        Absolved?.Invoke();
+        absolved?.Invoke();
     }
-    private void Update()
-    {
-        move_timer += Time.deltaTime;
-
-        if (drawLine)
-        {
-            DrawRope();
-        }
-    }
-
     private void DrawRope()
     {
         if (is_straight_rope)
         {
-            if (isGrappling == false)
+            if (IsGrappling == false)
             {
-                hook.Grapple();
-                isGrappling = true;
-                Color effect_color = DefineColor(hook.GrappedRenderer);
+                grabbed?.Invoke();
+                IsGrappling = true;
+                Color effect_color = DefineColor(grabbed_hit.transform.GetComponent<SpriteRenderer>());
 
-                ParticleSystem.MainModule settings = VisualEffect.GetComponent<ParticleSystem>().main;
+                ParticleSystem.MainModule settings = visual_effect.GetComponent<ParticleSystem>().main;
                 settings.startColor = effect_color;
 
-                Instantiate(VisualEffect, hook.grapplePoint, Quaternion.identity);
+                Instantiate(visual_effect, grabbed_hit.point, Quaternion.identity);
 
             }
             if (curret_waves_size > 0)
@@ -97,14 +96,13 @@ public class Rope : MonoBehaviour
         }
         else
         {
-            if (rope_renderer.GetPosition(percision - 1).x != hook.grapplePoint.x)
+            if (rope_renderer.GetPosition(percision - 1).x != grabbed_hit.point.x)
             {
                 DrawWavesRope();
             }
             else
             {
                 is_straight_rope = true;
-                Grabbed?.Invoke();
             }
         }
     }
@@ -113,9 +111,9 @@ public class Rope : MonoBehaviour
         for (int i = 0; i < percision; i++)
         {
             float delta = i / (percision - 1f);
-            Vector2 offset = Vector2.Perpendicular(hook.DistanceVector).normalized * ropeAnimationCurve.Evaluate(delta) * curret_waves_size;
-            Vector2 targetPosition = Vector2.Lerp(hook.firePoint.position, hook.grapplePoint, delta) + offset;
-            Vector2 currentPosition = Vector2.Lerp(hook.firePoint.position, targetPosition, ropeLaunchSpeedCurve.Evaluate(move_timer) * ropeLaunchSpeedMultiplayer);
+            Vector2 offset = Vector2.Perpendicular(grabbed_hit.point.Direction(start_point.position) * rope_curve.Evaluate(delta) * curret_waves_size);
+            Vector2 targetPosition = Vector2.Lerp(start_point.position, grabbed_hit.point, delta) + offset;
+            Vector2 currentPosition = Vector2.Lerp(start_point.position, targetPosition, launch_speed_curve.Evaluate(move_timer) * launch_speed);
 
             rope_renderer.SetPosition(i, currentPosition);
         }
@@ -123,12 +121,14 @@ public class Rope : MonoBehaviour
     private void DrawStraightRope()
     {
         rope_renderer.positionCount = 2;
-        rope_renderer.SetPosition(0, hook.grapplePoint);
-        rope_renderer.SetPosition(1, hook.firePoint.position);
+        rope_renderer.SetPosition(0, start_point.position);
+        rope_renderer.SetPosition(1, grabbed_hit.point);
     }
+
+    #region Color Define
     private Color DefineColor(SpriteRenderer renderer)
     {
-        Vector2 local_position = transform.InverseTransformPoint(hook.grapplePoint);
+        Vector2 local_position = transform.InverseTransformPoint(grabbed_hit.point);
         Color pixel_color = GetPixel(local_position, renderer);
         return pixel_color - (Color.white - renderer.color);
     }
@@ -166,4 +166,5 @@ public class Rope : MonoBehaviour
 
         return new Vector2Int(x, y);
     }
+    #endregion
 }

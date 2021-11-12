@@ -78,7 +78,7 @@ public class Hook : MonoBehaviour
 
     private void Awake()
     {
-        grappleRope.enabled = false;
+        grappleRope.StopDraw();
         m_springJoint2D.enabled = false;
         //gravity_scale = ballRigidbody.gravityScale;
 
@@ -94,7 +94,7 @@ public class Hook : MonoBehaviour
         {
             IsHold = false;
 
-            grappleRope.enabled = false;
+            grappleRope.StopDraw();
             m_springJoint2D.enabled = false;
             //ballRigidbody.gravityScale = gravity_scale;
         };
@@ -114,7 +114,7 @@ public class Hook : MonoBehaviour
         
         if (IsHold)
         {
-            if (grappleRope.enabled)
+            if (grappleRope.IsDrawing)
             {
                 RotateGun(grapplePoint, false);
             }
@@ -123,7 +123,7 @@ public class Hook : MonoBehaviour
                 RotateGun(MousePosition, false);
             }
 
-            if (launchToPoint && grappleRope.isGrappling)
+            if (launchToPoint && grappleRope.IsGrappling)
             {
                 if (Launch_Type == LaunchType.Transform_Launch)
                 {
@@ -179,7 +179,7 @@ public class Hook : MonoBehaviour
                 grapplePoint = _hit.point;
                 GrappedRenderer = _hit.transform.GetComponent<SpriteRenderer>();
                 DistanceVector = grapplePoint - (Vector2)gunPivot.position;
-                grappleRope.enabled = true;
+                grappleRope.StartGrapp(firePoint, _hit);
             }
         }
     }

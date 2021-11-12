@@ -7,7 +7,6 @@ public static class TransformExstentions
     {
         return (target - position).normalized;
     }
-
     public static Vector2 Direction(this Vector3 position, Vector3 target)
     {
         return (target - position).normalized;

@@ -34,11 +34,12 @@ public abstract class ChildrenModifier : MonoBehaviour
         if (randomize_count)
             unchanged_count = Random.Range(min_count, max_count);
 
-        List<Transform> children = transform.GetComponentsInChildren<Transform>().Where(i => i.parent == transform).ToList();
+        List<Transform> children = transform.GetComponentsInChildren<Transform>().Where(i => i.parent == transform && i != transform).ToList();
 
-        while(children.Count > unchanged_count)
+        while (children.Count > unchanged_count)
         {
             Transform modify_child = children[Random.Range(0, children.Count)];
+
             Modify(modify_child.gameObject);
             children.Remove(modify_child);
         }
