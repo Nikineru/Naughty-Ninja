@@ -8,7 +8,9 @@ public class RandomlyInitialized : PoolObject
 
     private void OnValidate()
     {
-        _camera = Camera.main;
+        if(_camera == null)
+            _camera = Camera.main;
+
         CalculateID();
     }
 

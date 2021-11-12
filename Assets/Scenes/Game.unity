@@ -724,7 +724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max_pool_size: 5
   spawn_range: 15
-  spawn_delay: 1
+  spawn_delay: 10
   prefabs:
   - {fileID: 7902603321675873239, guid: 4c9e00ae562693d4b9f3fe056555cab8, type: 3}
   - {fileID: 8647224106853452682, guid: bdb1289ca096d174bb4351db01c5bf92, type: 3}
@@ -1705,7 +1705,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 948075332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1955,6 +1955,10 @@ PrefabInstance:
     - target: {fileID: 2224497530173590249, guid: 5fedca64a5f425b4ba80f174118ab37b, type: 3}
       propertyPath: m_Name
       value: JumpEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 2224497530173590249, guid: 5fedca64a5f425b4ba80f174118ab37b, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7089823092485404661, guid: 5fedca64a5f425b4ba80f174118ab37b, type: 3}
       propertyPath: m_RootOrder
@@ -2946,7 +2950,7 @@ GameObject:
   - component: {fileID: 145436368549566867}
   - component: {fileID: 226804990}
   - component: {fileID: 226804991}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground-Checker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3210,6 +3214,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grappleRope: {fileID: 1610040055959739639}
+  invisible_layers:
+    serializedVersion: 2
+    m_Bits: 768
   grappleToAll: 0
   grappableLayerNumber: 6
   gunHolder: {fileID: 5998077364427207238}
@@ -3218,7 +3225,7 @@ MonoBehaviour:
   rotateOverTime: 1
   rotationSpeed: 12.9
   hasMaxDistance: 1
-  maxDistance: 20
+  maxDistance: 25
   launchToPoint: 1
   Launch_Type: 1
   launchSpeed: 0.57
@@ -3308,7 +3315,7 @@ GameObject:
   - component: {fileID: 5998077362926944144}
   - component: {fileID: 5998077362926944146}
   - component: {fileID: 3593988704917308741}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GrapplingGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3339,7 +3346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5998077363522367456}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3455,7 +3462,7 @@ GameObject:
   - component: {fileID: 5998077363638238379}
   - component: {fileID: 5998077363638238372}
   - component: {fileID: 1610040055959739639}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3521,7 +3528,7 @@ GameObject:
   - component: {fileID: 495312117}
   - component: {fileID: 5998077364427207240}
   - component: {fileID: 495312120}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3640,7 +3647,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5998077364642309199}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GunPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3671,7 +3678,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2781946531532553832}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Jump-Checker
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}

@@ -8,7 +8,9 @@ public class Hook : MonoBehaviour
 
     [Header("Scripts:")]
     public Rope grappleRope;
+
     [Header("Layer Settings:")]
+    [SerializeField] private LayerMask invisible_layers;
     [SerializeField] private bool grappleToAll = false;
     [SerializeField] private int grappableLayerNumber = 6;
 
@@ -58,6 +60,7 @@ public class Hook : MonoBehaviour
     private Camera _Camera;
     private bool IsHold;
     private float curret_cool_down;
+    private LayerMask check_layers;
 
     private enum LaunchType
     {
@@ -80,6 +83,7 @@ public class Hook : MonoBehaviour
     {
         grappleRope.StopDraw();
         m_springJoint2D.enabled = false;
+        check_layers = Physics.AllLayers - invisible_layers;
         //gravity_scale = ballRigidbody.gravityScale;
 
         _Camera = Camera.main;
@@ -169,18 +173,19 @@ public class Hook : MonoBehaviour
     }
     private void SetGrapplePoint()
     {
-        if (Physics2D.Raycast(firePoint.position, Mouse_FirePoint_DistanceVector.normalized))
-        {
-            RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, Mouse_FirePoint_DistanceVector.normalized);
-            if ((_hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll) && ((Vector2.Distance(_hit.point, firePoint.position) <= maxDistance) || !hasMaxDistance))
-            {
-                Grabbed?.Invoke();
+        RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, Mouse_FirePoint_DistanceVector.normalized, Mathf.Infinity, check_layers);
 
-                grapplePoint = _hit.point;
-                GrappedRenderer = _hit.transform.GetComponent<SpriteRenderer>();
-                DistanceVector = grapplePoint - (Vector2)gunPivot.position;
-                grappleRope.StartGrapp(firePoint, _hit);
-            }
+        if (_hit.transform == null)
+            return;
+
+        if ((_hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll) && ((Vector2.Distance(_hit.point, firePoint.position) <= maxDistance) || !hasMaxDistance))
+        {
+            Grabbed?.Invoke();
+
+            grapplePoint = _hit.point;
+            GrappedRenderer = _hit.transform.GetComponent<SpriteRenderer>();
+            DistanceVector = grapplePoint - (Vector2)gunPivot.position;
+            grappleRope.StartGrapp(firePoint, _hit);
         }
     }
     public void Grapple()
