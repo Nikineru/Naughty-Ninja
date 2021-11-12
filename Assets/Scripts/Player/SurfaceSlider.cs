@@ -10,7 +10,7 @@ public class SurfaceSlider : MonoBehaviour
         return forward - Vector2.Dot(forward, _normal) * _normal;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         _normal = collision.contacts[0].normal;
         IsOnSurface = true;

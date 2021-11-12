@@ -3,33 +3,24 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class JumpFX : MonoBehaviour
 {
-    public float jumpAmount = 35;
-    public float gravityScale = 10;
-    public float fallingGravityScale = 40;
     [SerializeField] private float jumpHeight;
+    [SerializeField] private GroundUnderLegs _GroundChecker;
 
     private Rigidbody2D _rigidbody;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _GroundChecker = GetComponent<GroundUnderLegs>();
     }
 
-    void Update()
+    public void Jump()
     {
-        //if (_rigidbody.velocity.y >= 0)
-        //{
-        //    _rigidbody.gravityScale = gravityScale;
-        //}
-        //else if (_rigidbody.velocity.y < 0)
-        //{
-        //    _rigidbody.gravityScale = fallingGravityScale;
-        //}
-    }
-
-    public void Jump() 
-    {
-        float jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics2D.gravity.y * _rigidbody.gravityScale));
-        _rigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        if (_GroundChecker.onGround)
+        {
+            print("jump!");
+            float jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics2D.gravity.y * _rigidbody.gravityScale));
+            _rigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        }
     }
 }
