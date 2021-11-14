@@ -16,6 +16,9 @@ public class RandomlyInitialized : PoolObject
 
     public bool GetInitializePosition(ref Vector3 initialize_position, float spawn_range, float accuracy=5) 
     {
+        if (_camera == null)
+            return false;
+
         Vector2 right_borded_position = _camera.ViewportToWorldPoint(new Vector2(1, 0.5f));
         float spawn_shift = spawn_range / 2;
 

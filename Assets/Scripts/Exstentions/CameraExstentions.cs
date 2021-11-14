@@ -54,4 +54,18 @@ public static class CameraExstentions
 
         return false;
     }
+
+    public static Bounds LocalBounds(this Camera camera) 
+    {
+        Vector2 camera_size = camera.ViewportToWorldPoint(new Vector2(1, 1)) - camera.ViewportToWorldPoint(new Vector2(0, 0));
+        return new Bounds(Vector2.zero, camera_size);
+    }
+
+    public static Bounds WorldBounds(this Camera camera) 
+    {
+        Bounds bounds = camera.LocalBounds();
+        bounds.center = camera.transform.TransformPoint(bounds.center);
+
+        return bounds;
+    }
 }
